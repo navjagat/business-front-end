@@ -46,35 +46,51 @@
     <script type="text/javascript" src="Core/js/config/appConfig.js"></script>
     <script type="text/javascript" src="Core/js/config/constants.js"></script>
     <script type="text/javascript" src="Core/js/config/notificationConfig.js"></script>
-    <script type="text/javascript" src="Core/js/config/relativeUrlConfig.js"></script>
     <script type="text/javascript" src="Core/js/config/templateUrlConfig.js"></script>
     <script type="text/javascript" src="Core/js/services/localStorageService.js"></script>
     <script type="text/javascript" src="Core/js/services/notificationService.js"></script>
     <script type="text/javascript" src="Core/js/services/httpService.js"></script>
     <script type="text/javascript" src="Core/js/services/authService.js"></script>
+    <script type="text/javascript" src="Core/js/config/relativeUrlConfig.js"></script>
 
     <!-- Main Module -->
     <script type="text/javascript" src="Main/js/mainModule.js"></script>
     <script type="text/javascript" src="Main/js/mainModule.routes.js"></script>
+    <link rel="stylesheet" href="Main/css/app.css">
 
     <!-- Map Module -->
     <script type="text/javascript" src="Module/mapModule/js/mapController.js"></script>
     <link rel="stylesheet" href="Module/mapModule/css/map.css">
 
+    <!-- Header Module -->
+    <script type="text/javascript" src="Module/header/js/header.js"></script>
+
+    <!-- Login Module -->
+    <script type="text/javascript" src="Module/logInModule/js/loginController.js"></script>
+    <link rel="stylesheet" href="Module/logInModule/css/login.css">
+
+
 </head>
 <body>
+<business-header ng-controller="headerController" ng-if="isLoggedIn">
+    <business-nodes>
+        <business-node name="{{userName}}" subdata="accountOpt" is-user="true"
+                        icon-in={{avatar}}></business-node>
+    </business-nodes>
+    <business-view left-justified></business-view>
+</business-header>
 
-
-<div ng-controller="mapController">
+<div ng-controller="mapController" ng-show="showMap">
     <ui-gmap-google-map center='map.center'
                         zoom='map.zoom'
-                        pan="true"
-
-            >
+                        pan="true">
 
         <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
 
     </ui-gmap-google-map>
 </div>
+
+<div ng-view></div>
+
 </body>
 </html>
