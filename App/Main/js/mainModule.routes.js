@@ -7,6 +7,9 @@
 angular
     .module('Business.Main')
     .config(['$routeProvider', '$httpProvider', 'templateUrlConfig', function ($routeProvider, $httpProvider, templateUrlConfig) {
+
+        $httpProvider.defaults.withCredentials = true;
+
         $routeProvider.when('/', {
             templateUrl: templateUrlConfig.HOME_TEMP,
             controller: 'homeController',
@@ -21,5 +24,4 @@ angular
             title: 'Business | Map'
         }).otherwise('/');
 
-        $httpProvider.defaults.withCredentials = true;
     }]);

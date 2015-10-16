@@ -12,6 +12,7 @@ angular
         console.log('Cookies please',$cookies);
         $http.defaults.headers.post['X-CSRF-TOKEN'] = $cookies.csrftoken;
 
+
         //console.log($rootScope);
 
         $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
@@ -19,6 +20,9 @@ angular
             if(current && current.$$route){
                 if(authService.isLoggedIn()){
                     $rootScope.isLoggedIn = true;
+                    httpService.get(relativeUrlConfig.AUTH_TEST_DATA, function(response){
+                        console.log(response);
+                    });
                     if(current.$$route.originalPath === "/login"){
                         $location.path('/');
                     }

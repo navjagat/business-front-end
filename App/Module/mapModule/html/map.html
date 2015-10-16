@@ -5,7 +5,7 @@
                         draggable="true"
                         options="map.options">
 
-        <ui-gmap-search-box ng-show="showSearchBox" template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+        <ui-gmap-search-box data-ng-if="showSearchBox" template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
 
         <ui-gmap-marker data-ng-repeat="marker in markers"
                         idKey='marker.id'
