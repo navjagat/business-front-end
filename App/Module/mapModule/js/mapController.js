@@ -28,7 +28,7 @@ angular.module('Business.Modules.Map', ['Business.Core']).controller('mapControl
         $scope.markers = [];
         angular.forEach(response, function(key){
             console.log(key);
-            defaultMarkerOption.labelContent = key.business.bussinessName+ "; Type:" + key.business.businessType+"  address:"+key.street +";"+key.city+";"+key.state+";"+key.country;
+            defaultMarkerOption.labelContent = key.business.businessName+ "; Type:" + key.business.businessType+"  address:"+key.street +";"+key.city+";"+key.state+";"+key.country;
             $scope.markers.push({
                 id:key.id,
                 location: {
@@ -39,18 +39,18 @@ angular.module('Business.Modules.Map', ['Business.Core']).controller('mapControl
                 click: clickEvent
             });
         })
-    }
+    };
 
     var getFilteredAddress = function(lat, lng){
         var params = {
             lat: lat,
             lng: lng
-        }
+        };
 
         mapService.getFilteredAddress(params, filteredAddressSuccessCallback, function(error){
             console.log(error);
         })
-    }
+    };
 
 
     $scope.markers = [];

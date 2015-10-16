@@ -12,5 +12,6 @@ angular
             libraries: 'weather,geometry,visualization,places'
         });
 
+        $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
         $httpProvider.defaults.withCredentials = true;
     }]);

@@ -10,7 +10,7 @@ angular
         $rootScope.isLoggedIn = false;
 
         console.log('Cookies please',$cookies);
-        $http.defaults.headers.post['X-CSRF-TOKEN'] = $cookies.csrftoken;
+        /*$http.defaults.headers.post['X-CSRF-TOKEN'] = $cookies.csrftoken;*/
 
 
         //console.log($rootScope);
