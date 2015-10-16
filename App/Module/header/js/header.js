@@ -21,7 +21,7 @@
 'use strict';
 
 angular.module('Business.Modules.Header',
-    ['Business.Core']).controller('headerController', ['$scope', 'constants', 'authService', '$rootScope', 'localStorageService', 'httpService', 'relativeURLConfig','notificationConfig', 'notificationService', '$route', function ($scope, constants, authService, $rootScope, localStorageService, httpService, relativeURLConfig, notificationConfig, notificationService, $route) {
+    ['Business.Core']).controller('headerController', ['$scope', 'constants', 'authService', '$rootScope', 'localStorageService', 'httpService','notificationConfig', 'notificationService', '$route', function ($scope, constants, authService, $rootScope, localStorageService, httpService, notificationConfig, notificationService, $route) {
 
         var loggedIndata = localStorageService.get(constants.AUTH_DATA);
 
@@ -76,7 +76,7 @@ angular.module('Business.Modules.Header',
 
         $scope.logout = function (value) {
             if (value === 'Logout' || value === 'logout'){
-                authService.logOut('/login');
+                authService.logout('/login');
             }
         };
 

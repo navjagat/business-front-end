@@ -1,7 +1,10 @@
 <div class="container login">
     <form name="login" data-ng-submit="submitLogin(form)" role="form" class="login-form">
         <div class="form-group">
-            <input type="text" tabindex="1" class="form-control user-name-box"  ng-class="{'ng-invalid': errorType == errorTypes.username && !form.userName}" id="userName" placeholder="{{USERNAME_TEXT}}" data-ng-model="form.userName">
+            <div class="input-group">
+                <span class="input-group-addon" id="addon1">@</span>
+                <input type="text" tabindex="1" class="form-control user-name-box"  ng-class="{'ng-invalid': errorType == errorTypes.username && !form.userName}" id="userName" placeholder="{{USERNAME_TEXT}}" data-ng-model="form.userName" aria-describedby="addon1">
+            </div>
         </div>
         <div class="form-group second-field">
             <input type="password"  tabindex="2"  class="form-control login-lock-icon" ng-class="{'ng-invalid': errorType == errorTypes.password && !form.password}" id="passwordText" placeholder="{{ONLY_PASSWORD}}" data-ng-model="form.password" autocomplete="off">

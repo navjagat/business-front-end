@@ -5,9 +5,12 @@
 'use strict';
 
 angular
-    .module('Business.Main', ['ngRoute', 'Business.Core', 'Business.Modules.Map', 'Business.Modules.Header', 'Business.Modules.Login'])
-    .run(['$route', '$rootScope', 'authService', 'httpService', '$location', 'localStorageService', 'constants', 'relativeUrlConfig', function ($route, $rootScope, authService, httpService, $location, localStorageService, constants, relativeUrlConfig) {
+    .module('Business.Main', ['ngRoute', 'ngCookies', 'Business.Core', 'Business.Modules.Map', 'Business.Modules.Header', 'Business.Modules.Login', 'Business.Modules.Home'])
+    .run(['$route', '$rootScope', 'authService', 'httpService', '$location', 'localStorageService', 'constants', 'relativeUrlConfig', '$cookies', '$http', function ($route, $rootScope, authService, httpService, $location, localStorageService, constants, relativeUrlConfig, $cookies, $http) {
         $rootScope.isLoggedIn = false;
+
+        console.log('Cookies please',$cookies);
+        $http.defaults.headers.post['X-CSRF-TOKEN'] = $cookies.csrftoken;
 
         //console.log($rootScope);
 

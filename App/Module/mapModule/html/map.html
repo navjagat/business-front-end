@@ -1,0 +1,18 @@
+<div>
+    <ui-gmap-google-map center='map.center'
+                        zoom='map.zoom'
+                        pan="true"
+                        draggable="true"
+                        options="map.options">
+
+        <ui-gmap-search-box ng-show="showSearchBox" template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
+
+        <ui-gmap-marker data-ng-repeat="marker in markers"
+                        idKey='marker.id'
+                        coords='marker.location'
+                        click="marker.click"
+                        options="marker.options">
+        </ui-gmap-marker>
+
+    </ui-gmap-google-map>
+</div>

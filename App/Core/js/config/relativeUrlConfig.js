@@ -4,5 +4,6 @@
 
 
 angular.module('Business.Core').constant('relativeUrlConfig',{
-    LOGIN_URL:'/authentication/login'
-})
+    LOGIN_URL:'/authentication/login',
+    LOGOUT_URL:'/logout'
+});

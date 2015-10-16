@@ -15,8 +15,10 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-touch.min.js"></script>
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-cookies.js"></script>
 
     <!-- Google Maps -->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
     <script src="http://cdn.rawgit.com/nmccready/angular-simple-logger/0.0.1/dist/index.js"></script>
     <script type="text/javascript"
@@ -26,16 +28,13 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.9/ngStorage.min.js"></script>
 
-    <!-- Bootstrap 3.3.2 Libs -->
-    <link rel="stylesheet"
-          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"
-          type="text/css">
+    <!-- Bootstrap 3.3.5 Libs -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <link rel="stylesheet"
           href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!--Angular UI Bootstrap-->
     <script
@@ -68,6 +67,9 @@
     <!-- Login Module -->
     <script type="text/javascript" src="Module/logInModule/js/loginController.js"></script>
     <link rel="stylesheet" href="Module/logInModule/css/login.css">
+    <!-- Home Module -->
+    <script type="text/javascript" src="Module/homeModule/js/homeController.js"></script>
+    <link rel="stylesheet" href="Module/homeModule/css/home.css">
 
 
 </head>
@@ -79,16 +81,6 @@
     </business-nodes>
     <business-view left-justified></business-view>
 </business-header>
-
-<div ng-controller="mapController" ng-show="showMap">
-    <ui-gmap-google-map center='map.center'
-                        zoom='map.zoom'
-                        pan="true">
-
-        <ui-gmap-search-box template="searchbox.template" events="searchbox.events"></ui-gmap-search-box>
-
-    </ui-gmap-google-map>
-</div>
 
 <div ng-view></div>
 

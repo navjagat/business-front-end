@@ -4,29 +4,95 @@
 
 'use strict';
 
-angular.module('Business.Modules.Map', ['Business.Core']).controller('mapController', ['$scope','templateUrlConfig', function($scope, templateUrlConfig){
-    $scope.map = {
-        center: {
-            latitude: 45,
-            longitude: -73
-        },
-        zoom: 10
+angular.module('Business.Modules.Map', ['Business.Core']).controller('mapController', ['$scope', 'templateUrlConfig', '$route', function ($scope, templateUrlConfig, $route) {
+
+    var defaultOptions = {
+        maxZoom: 18,
+        minZoom: 2
     };
-    var onSuccess = function(position) {
+
+    function clickEvent(marker){
+        console.log(marker.labelContent);
+        console.log(marker.position);
+    }
+
+    var defaultMarkerOption = {
+        draggable: false,
+        labelAnchor: "100 0",
+        labelClass: "marker-labels",
+        labelContent:"My Current Location"
+    };
+
+    $scope.markers = [];
+
+    $scope.map = {};
+
+    var onSuccess = function (position) {
         $scope.map.center = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         };
+        $scope.map.zoom = 14;
+        $scope.map.options = defaultOptions;
+
+        $scope.markers.push({
+            id:0,
+            location: {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            },
+            options: defaultMarkerOption,
+            click: clickEvent
+        });
+
         $scope.$apply();
-    }
+    };
+
     function onError(error) {
-        console.log('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+        console.log('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
     }
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+    if ($route.current.params.location === "currentLocation") {
+        $scope.showSearchBox = false;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+    } else if ($route.current.params.location === "setLocation") {
+        $scope.showSearchBox = true;
+        $scope.map = {
+            center: {
+                latitude: 32.779680,
+                longitude: -79.935493
+            },
+            zoom: 14,
+            options: defaultOptions
+        };
+    }
 
     var events = {
         places_changed: function (searchBox) {
-            console.log(searchBox);
+            var place = searchBox.getPlaces()[0];
+            var marker = {
+                id:1,
+                options: defaultMarkerOption,
+                click:clickEvent
+            };
+
+            marker.location = {
+                latitude: place.geometry.location.A,
+                longitude: place.geometry.location.F
+            };
+
+            $scope.map.center = {
+                latitude: place.geometry.location.A,
+                longitude: place.geometry.location.F
+            };
+
+            $scope.map.zoom = 14;
+            $scope.map.options = defaultOptions;
+            $scope.markers.push(marker);
+            $scope.$apply();
         }
     };
 
@@ -34,4 +100,7 @@ angular.module('Business.Modules.Map', ['Business.Core']).controller('mapControl
         template: templateUrlConfig.SEARCH_BOX_TEMP,
         events: events
     }
+
 }]);
+
+

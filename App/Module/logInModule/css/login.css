@@ -4,7 +4,7 @@
     left: 35vw !important;
     background-color: rgba(0,0,0,0.6) !important;
     width: 30vw !important;
-    height: 10vw !important;
+    height: auto !important;
     padding: 40px !important;
     border-radius: 5px !important;
 }
