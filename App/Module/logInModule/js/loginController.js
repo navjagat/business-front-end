@@ -37,9 +37,11 @@ angular
         };
 
 
-            $scope.googleSignIn = function(){
-                $location.path('/social');
-            }
+        function googleSignIn() {
+            $scope.socialUrl = authService.googleLogin();
+        }
+
+        googleSignIn();
 
 
     }]);

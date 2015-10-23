@@ -21,7 +21,7 @@
 'use strict';
 
 angular.module('Business.Modules.Header',
-    ['Business.Core']).controller('headerController', ['$scope', 'constants', 'authService', '$rootScope', 'localStorageService', 'httpService','notificationConfig', 'notificationService', '$route', function ($scope, constants, authService, $rootScope, localStorageService, httpService, notificationConfig, notificationService, $route) {
+    ['Business.Core']).controller('headerController', ['$scope', 'constants', 'authService', '$rootScope', 'localStorageService', 'httpService', 'notificationConfig', 'notificationService', '$route', function ($scope, constants, authService, $rootScope, localStorageService, httpService, notificationConfig, notificationService, $route) {
 
         var loggedIndata = localStorageService.get(constants.AUTH_DATA);
 
@@ -29,7 +29,7 @@ angular.module('Business.Modules.Header',
             $rootScope.userName = loggedIndata.firstName + " " + loggedIndata.lastName;
 
             if (loggedIndata.avatar) {
-                if(loggedIndata.avatar.startsWith('https'))
+                if (loggedIndata.avatar.startsWith('https'))
                     $rootScope.avatar = loggedIndata.avatar;
                 else
                     $rootScope.avatar = 'data:image/png;base64,' + loggedIndata.avatar;
@@ -78,7 +78,7 @@ angular.module('Business.Modules.Header',
          */
 
         $scope.logout = function (value) {
-            if (value === 'Logout' || value === 'logout'){
+            if (value === 'Logout' || value === 'logout') {
                 authService.logout('/login');
             }
         };
@@ -136,8 +136,18 @@ angular.module('Business.Modules.Header',
                 if (node.submenu)
                     node.hasSubMenu = true;
 
-                if (node.user === "true")
+                if (node.user === "true") {
                     node.iconin = attrs.iconIn;
+                    $rootScope.$watch('userName', function (newValue, oldValue) {
+                        console.log("userName", newValue, oldValue);
+                        if (newValue !== oldValue && newValue.indexOf('undefined')==-1) {
+                            node.title = newValue;
+                        } else {
+                            node.title = oldValue;
+                        }
+                    })
+                }
+
                 else {
                     node.iconin = attrs.iconIn;
                     node.iconover = attrs.iconOver;

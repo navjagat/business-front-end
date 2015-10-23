@@ -20,9 +20,9 @@ angular
             if(current && current.$$route){
                 if(authService.isLoggedIn()){
                     $rootScope.isLoggedIn = true;
-                    httpService.get(relativeUrlConfig.AUTH_TEST_DATA, function(response){
+                    /*httpService.get(relativeUrlConfig.AUTH_TEST_DATA, function(response){
                         console.log(response);
-                    });
+                    });*/
                     if(current.$$route.originalPath === "/login"){
                         $location.path('/');
                     }
@@ -34,7 +34,24 @@ angular
                     var loggedInData = localStorageService.get(constants.AUTH_DATA)
                 }else{
                     $rootScope.isLoggedIn = false;
-                    if(current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/social'){
+                    httpService.get(relativeUrlConfig.AUTH_TEST_DATA, function(response, status){
+                        $rootScope.isLoggedIn = true;
+                        console.log(response);
+                        console.log(status);
+                        localStorageService.set(constants.AUTH_DATA, response);
+
+                        if(response.displayName){
+                            $rootScope.userName = response.displayName;
+                        }else{
+                            $rootScope.userName = response.firstName + " " + response.lastName;
+                        }
+                        $location.path("/");
+
+                    }, function(error){
+                        $rootScope.isLoggedIn = false;
+                        console.log(error);
+                    });
+                    if(!$rootScope.isLoggedIn && current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/social'){
                         $location.path('/login');
                     }
                 }
