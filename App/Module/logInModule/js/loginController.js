@@ -19,7 +19,7 @@ angular
             if (form.userName && form.password) {
 
                 authService.login(form.userName, form.password).then(function (data) {
-                        if(data.status === 200){
+                        if (data.status === 200) {
                             localStorageService.set(constants.AUTH_DATA, data.response);
                         }
                         var loggedIndata = localStorageService.get(constants.AUTH_DATA);
@@ -34,5 +34,12 @@ angular
                         console.log(err.status);
                     })
             }
-        }
+        };
+
+
+            $scope.googleSignIn = function(){
+                $location.path('/social');
+            }
+
+
     }]);

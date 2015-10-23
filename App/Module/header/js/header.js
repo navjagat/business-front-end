@@ -29,7 +29,10 @@ angular.module('Business.Modules.Header',
             $rootScope.userName = loggedIndata.firstName + " " + loggedIndata.lastName;
 
             if (loggedIndata.avatar) {
-                $rootScope.avatar = 'data:image/png;base64,' + loggedIndata.avatar;
+                if(loggedIndata.avatar.startsWith('https'))
+                    $rootScope.avatar = loggedIndata.avatar;
+                else
+                    $rootScope.avatar = 'data:image/png;base64,' + loggedIndata.avatar;
             }
 
         }

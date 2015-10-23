@@ -8,5 +8,6 @@ angular.module('Business.Core').constant('templateUrlConfig', {
     HEADER_TEMPLATE:'Module/header/html/header.html',
     LOGIN_TEMP:"Module/logInModule/html/login.html",
     HOME_TEMP:"Module/homeModule/html/home.html",
-    MAP_TEMP:"Module/mapModule/html/map.html"
+    MAP_TEMP:"Module/mapModule/html/map.html",
+    SOCIAL_LOGIN:"Module/socialModule/html/socialGoogle.html"
 });

@@ -22,6 +22,10 @@ angular
             templateUrl: templateUrlConfig.MAP_TEMP,
             controller: 'mapController',
             title: 'Business | Map'
+        }).when('/social', {
+            templateUrl: templateUrlConfig.SOCIAL_LOGIN,
+            controller: 'socialController',
+            title: 'Business | Social - Login'
         }).otherwise('/');
 
     }]);

@@ -8,5 +8,6 @@ angular.module('Business.Core').constant('relativeUrlConfig',{
     LOGOUT_URL:'/authentication/logout',
     ADDRESS_API:"/address",
     BUSINESS_API:"/business",
-    AUTH_TEST_DATA:"/authentication"
+    AUTH_TEST_DATA:"/authentication",
+    GOOGLE_LOGIN:"/auth/google"
 });

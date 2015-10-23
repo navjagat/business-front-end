@@ -5,11 +5,11 @@
 'use strict';
 
 angular
-    .module('Business.Main', ['ngRoute', 'ngCookies', 'Business.Core', 'Business.Modules.Map', 'Business.Modules.Header', 'Business.Modules.Login', 'Business.Modules.Home'])
+    .module('Business.Main', ['ngRoute', 'ngCookies', 'Business.Core', 'Business.Modules.Map', 'Business.Modules.Header', 'Business.Modules.Login', 'Business.Modules.Home', 'Business.Modules.Social'])
     .run(['$route', '$rootScope', 'authService', 'httpService', '$location', 'localStorageService', 'constants', 'relativeUrlConfig', '$cookies', '$http', function ($route, $rootScope, authService, httpService, $location, localStorageService, constants, relativeUrlConfig, $cookies, $http) {
         $rootScope.isLoggedIn = false;
 
-        console.log('Cookies please',$cookies);
+        console.log('Cookies please',$cookies.get('JSESSIONID'));
         /*$http.defaults.headers.post['X-CSRF-TOKEN'] = $cookies.csrftoken;*/
 
 
@@ -34,7 +34,7 @@ angular
                     var loggedInData = localStorageService.get(constants.AUTH_DATA)
                 }else{
                     $rootScope.isLoggedIn = false;
-                    if(current.$$route.originalPath !== '/login'){
+                    if(current.$$route.originalPath !== '/login' && current.$$route.originalPath !== '/social'){
                         $location.path('/login');
                     }
                 }

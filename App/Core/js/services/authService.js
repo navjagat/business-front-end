@@ -13,7 +13,7 @@ angular
         var _authentication = {
             isAuth: false,
             userName: ''
-        }
+        };
 
         var _login = function (userName, password) {
             var data = 'username=' + userName + '&password=' + password;
@@ -61,7 +61,7 @@ angular
                         $location.path(path);
                     }
                 }).error(function (error, status) {
-                    console.log(error)
+                    console.log(error);
                     if (status === 401) {
                         localStorageService.remove(constants.AUTH_DATA);
                         $location.path(path);
@@ -69,9 +69,24 @@ angular
                 });
         };
 
+        var _googleLogin = function(){
+          /*$http.get(appConfig.BASE_API_URL + relativeUrlConfig.GOOGLE_LOGIN)
+              .then(function(response, status, headers){
+                  console.log('success', response);
+                  console.log(status);
+                  console.log(headers);
+              },
+              function(error, status, headers){
+                  console.log('error', error, status);
+                  console.log(status, headers)
+              });*/
+            return appConfig.BASE_API_URL + relativeUrlConfig.GOOGLE_LOGIN;
+        };
+
         authServiceFactory.login = _login;
         authServiceFactory.isLoggedIn = _isLoggedIn
         authServiceFactory.authentication = _authentication;
+        authServiceFactory.googleLogin = _googleLogin;
         authServiceFactory.logout = _logout;
 
 
