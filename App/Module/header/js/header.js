@@ -26,13 +26,26 @@ angular.module('Business.Modules.Header',
         var loggedIndata = localStorageService.get(constants.AUTH_DATA);
 
         if (loggedIndata) {
-            $rootScope.userName = loggedIndata.firstName + " " + loggedIndata.lastName;
+            if(loggedIndata.displayName){
+                $rootScope.userName = loggedIndata.displayName;
+            }else{
+                $rootScope.userName = loggedIndata.firstName + " " + loggedIndata.lastName;
+            }
 
-            if (loggedIndata.avatar) {
+
+            if (loggedIndata.imageUrl) {
+                if (loggedIndata.imageUrl.startsWith('https'))
+                    $rootScope.avatar = loggedIndata.imageUrl;
+                else{
+                    $rootScope.avatar = 'data:image/png;base64,' + loggedIndata.avatar;
+                }
+
+            }else{
                 if (loggedIndata.avatar.startsWith('https'))
                     $rootScope.avatar = loggedIndata.avatar;
-                else
+                else{
                     $rootScope.avatar = 'data:image/png;base64,' + loggedIndata.avatar;
+                }
             }
 
         }

@@ -49,6 +49,7 @@ angular.module('Business.Modules.Map', ['Business.Core']).controller('mapControl
 
         mapService.getFilteredAddress(params, filteredAddressSuccessCallback, function(error){
             console.log(error);
+            alert(error.error);
         })
     };
 
